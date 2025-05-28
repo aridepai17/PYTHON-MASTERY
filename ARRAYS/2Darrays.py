@@ -54,6 +54,50 @@ def traversearray(array):
             print(array[i][j])
             
 traversearray(twoD) 
+'''
+Output:
+11
+12
+13
+21
+22
+23
+31
+32
+33
+41
+42
+43
+51
+52
+53
+'''
+
+
+# Searching an element in a 2D array
+
+def search2dArray(array, target):
+    for i in range(len(array)):
+        for j in range(len(array[0])):
+            if array[i][j] == target:
+                return i, j
+    return -1, -1
+
+print(search2dArray(twoD, 33))  # (2, 2)
+print(search2dArray(twoD, 100))  # (-1, -1) 
+
+
+# Deleting an element in a 2D array
+
+new2dArray = np.delete(twoD, 0, axis = 1)
+print(new2dArray)
+# Output:
+# [ [12 13]
+# [22 23]
+# [32 33]
+# [42 43]
+# [52 53] ]
+
 
     
 

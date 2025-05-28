@@ -16,3 +16,12 @@ a[i][j] -> i and j between 0 and n
 3. Multi Dimensional Array
 An array with a bunch of values having been declared with multiple indices.
 a[i][j][k] -> i, j and k between 0 and n
+
+- When to use arrays - 
+1. To store multiple variables of same data type 
+2. Random access 
+
+- When not to use arrays -
+1. Same data type elements 
+2. Reserve memory
+
