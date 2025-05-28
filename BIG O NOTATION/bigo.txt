@@ -1,0 +1,48 @@
+- Big O - 
+Big O is the language and metric we use to describe the efficiency of algorithms.
+
+Omega - Best case 
+Omega describes the best case scenario for an algorithm.
+It tells you the fastest way an algorithm can run in the best circumstances.
+
+Theta - Average case
+It tells you what to generally expect in terms of time complextiy.
+
+- Big O - Worst case
+Big O describes the worst case scenario for an algorithm.
+It tells you the slowest way an algorithm can run in the worst circumstances.
+
+- O(1) - Constant Time
+def getfirstelement(my_list):
+    return my_list[0]
+
+numbers = [10, 20, 30, 40, 50]
+print(getfirstelement(numbers)) // 10
+eg: Accessing an element in an array by index.
+
+- O(n) - Linear Time
+def printlist(n):
+    for i in range(n):
+        print(i)
+
+printlist(5) // 0, 1, 2, 3, 4
+eg: Iterating through a list or array.
+
+- O(n^2) - Quadratic Time
+def printpairs(n):
+    for i in range(n):
+        for j in range(n):
+            print(i, j)
+
+printpairs(3) // (0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)
+eg: Nested loops iterating through a list or array.
+eg: Bubble sort, selection sort.
+
+- O(log n) - Logarithmic Time
+Splits the data in each step (divide and conquer).
+eg: Binary search in a sorted array.
+
+- O(n log n) - Linearithmic Time
+Splits and sorts or searches data
+eg: Merge sort, quicksort.
+
