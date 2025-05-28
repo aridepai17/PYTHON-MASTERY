@@ -1,0 +1,18 @@
+- Arrays -
+Arrays can store data of specified type.
+Elements of an array are located in a contiguous block of memory.
+Each element of an array has a unique index.
+
+- Types of Arrays -
+
+1. One Dimensional Array
+An array with a bunch of values having been declared with a single index.
+a[i] -> i between 0 and n
+
+2. Two Dimensional Array
+An array with a bunch of values having been declared with two indices.
+a[i][j] -> i and j between 0 and n
+
+3. Multi Dimensional Array
+An array with a bunch of values having been declared with multiple indices.
+a[i][j][k] -> i, j and k between 0 and n
