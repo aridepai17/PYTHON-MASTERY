@@ -1,0 +1,7 @@
+- Python Lists -
+List is a data structure that holds an ordered collection of items.
+
+- Similarities betwwen Lists and Arrays -
+1. Both data structures are mutable
+2. Both can be indexed and iterated through
+3. They both can be sliced.
