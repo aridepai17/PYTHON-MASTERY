@@ -137,6 +137,7 @@ print(dictionary4)  # Output: {'name': ['Thomas', '35', 'Los Angeles'], 'age': [
 dictionary5 = { 'name': 'Charlie', 'age': 28, 'city': 'San Francisco' }
 print(dictionary5.get('name'))  # Output: Charlie
 print(dictionary5.get('country'))  # Output: None (key not found)
+print(dictionary5.get())  # Output: None
 # Time Complexity: O(1)
 # Space Complexity: O(1)
 
