@@ -214,4 +214,42 @@ print(dictionary15)  # Output: {'city': 'New York', 'country': 'USA', 'name': 'L
 # Time Complexity: O(n)
 # Space Complexity: O(n)
 
+# Dictionary Methods / Bultin Functions
+
+# 1. in operator and not in operator
+mydictionary = {
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven'
+}
+
+print("three" in mydictionary.values()) # Output: True
+print(3 in mydictionary)  # Output: True
+print(10 in mydictionary)  # Output: False
+
+print(4 not in mydictionary) # Output: False
+print(9 not in mydictionary) # Output: True
+
+
+# 2. len() function
+print(len(mydictionary)) # Output: 5 (each pair as one element)
+
+
+# 3. all() function
+print(all(mydictionary))  # Output: True (all values are truthy)
+
+
+# 4. any() function
+print(any(mydictionary)) # Output: True (at least one value is truthy)
+
+
+# 5. sorted() function
+print(sorted(mydictionary)) # Output: [3, 4, 5, 6, 7]
+
+
+
+
+
 
