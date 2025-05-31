@@ -249,6 +249,30 @@ print(any(mydictionary)) # Output: True (at least one value is truthy)
 print(sorted(mydictionary)) # Output: [3, 4, 5, 6, 7]
 
 
+# Dictionary comprehension
+# Dictionary comprehension is a concise way to create dictionaries in Python.
+
+# newdict = { newkey: newvalue for item in list }
+# This creates a new dictionary by iterating over a list and applying a transformation to each item.
+
+# newdict = { newkey: newvalue for (key,,value) in dict.items() }
+# This creates a new dictionary by iterating over the key-value pairs in a dictionary and applying a transformation to each pair.
+
+# newdict = { newkey: newvalue for (key,,value) in dict.items() if condition }
+# This creates a new dictionary by iterating over the key-value pairs in a dictionary and applying a transformation to each pair only if a condition is met.
+
+import random
+
+citynames = ['Paris', 'London', 'Rome', 'Berlin', 'Madrid']
+
+newdict = { city : random.randint(20, 30) for city in citynames}
+print(newdict)  # Output: {'Paris': 25, 'London': 22, 'Rome': 28, 'Berlin': 30, 'Madrid': 21}
+
+newerdict = { city: temp for (city, temp) in newdict.items() }
+print(newerdict)  # Output: {'Paris': 25, 'London': 22, 'Rome': 28, 'Berlin': 30, 'Madrid': 21}
+
+above25 = { city: temp for (city, temp) in newdict.items() if temp > 25 }
+print(above25)  # Output: {'Rome': 28, 'Berlin': 30} (only cities with temperature > 25)
 
 
 
