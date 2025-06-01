@@ -10,6 +10,3 @@ print(conditional_filter(mydict))  # Output: {'b': 2, 'd': 4}
 # Another example usage:
 mydict = {'a': 8, 'b': 9, 'c': 13, 'd': 6, 'e': 14}
 print(conditional_filter(mydict))  # Output: {'a': 8, 'd': 6, 'e': 14}
-
-
-
