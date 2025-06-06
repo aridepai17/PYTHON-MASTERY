@@ -1,0 +1,3 @@
+- Tuples -
+A tuple is an immutable sequence of Python objects.
+Tuples are also comparable and hashable.
