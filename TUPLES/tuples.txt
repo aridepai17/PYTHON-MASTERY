@@ -1,3 +1,41 @@
 - Tuples -
 A tuple is an immutable sequence of Python objects.
 Tuples are also comparable and hashable.
+
+- Tuples VS Lists -
+Tuples are immutable while Lists are mutable.
+Tuples can be stored in Lists and Lists can be stored in Tuples.
+Both Tuples and Lists can be nested
+We generally use Tuples for heterogeneous data types and Lists for homogeneous data types.
+Iteration through a tuple is faster than with Lists
+Tuples that contain immutable elements can be used as dictionary keys.
+If you have data that does not change, implementing it as a Tuple will guarantee that it remains write-protected.
+
+
+- Methods that CANNOT be used with Tuples -
+append()
+insert()
+extend()
+remove()
+pop()
+clear()
+sort()
+reverse()
+
+- Time and Space Complexity of Tuples -
+
+Creating a Tuple 
+Time Complexity: O(1)
+Space Complexity: O(n)
+
+Traversing a Tuple
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+Accessing a given element in Tuple
+Time Complexity: O(1)
+Space Complexity: O(1)
+
+Searching for a given element in Tuple
+Time Complexity: O(n)
+Space Complexity: O(1)
