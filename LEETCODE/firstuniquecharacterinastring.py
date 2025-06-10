@@ -2,6 +2,8 @@
 
 # Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
 
+from collections import Counter
+
 def firstUniqChar(s):
     unique = []
     
@@ -12,6 +14,24 @@ def firstUniqChar(s):
         return -1
     else:
         return min(unique)
+    
+# Alternate solution
+def firstUniqChar(s):
+    frequency = Counter(s)
+    
+    for index, value in frequency.items():
+        if value == 1:
+            return s.index(index)
+    return -1
+
+# Another alternate solution
+def firstUniqChar(s):
+    frequency = Counter(s)
+    
+    for index, count in enumerate(s):
+        if frequency[count] == 1:
+            return index
+    return -1
     
 # Example usage:
 s = "leetcode"
