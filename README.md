@@ -1,49 +1,56 @@
 # 🐍 PYTHON MASTERY
 
-> **From Zero to Hero**: A comprehensive Python learning journey designed to transform beginners into confident, skilled Python developers.
-> 
-## 🎯 What You'll Achieve
+> **From Zero to Coding Hero:**  
+> Your all-in-one resource for learning Python fundamentals, mastering data structures, and conquering LeetCode.
 
-By the end of this course, you'll be able to:
-- Write clean, efficient, and maintainable Python code
-- Build real-world applications with confidence
-- Understand advanced Python concepts and best practices
-- Debug and optimize your code effectively
-- Create your own modules and packages
+---
 
-## 🚀 Who This Course Is For
+## 🚀 What’s Inside
 
-- **Complete Beginners**: No prior programming experience required
-- **Career Switchers**: Looking to break into tech with Python
-- **Self-Taught Developers**: Want to fill knowledge gaps and learn best practices
-- **Students**: Supplementing academic learning with practical projects
+- **Step-by-step Python basics:** Syntax, data types, control flow, OOP, file handling, and modules
+- **Comprehensive data structures:** Lists, arrays, dictionaries, tuples, prefix sums, and more
+- **LeetCode problem solving:** 100+ real interview-style coding challenges with clean, well-commented solutions
+- **Big O Notation:** Understand time and space complexity for efficient coding
+- **Project-based learning:** Apply concepts to real-world mini-projects
 
-## 🎯 Learning Approach
+---
 
-### 📖 Theory + Practice
-Each module combines:
-- **Conceptual explanations** with real-world examples
-- **Hands-on exercises** to reinforce learning
-- **Progressive projects** that build on previous knowledge
-- **Code reviews** and best practices
+## 🎯 Who Should Use This Repo?
 
-### 🔄 Iterative Learning
-- Start simple, add complexity gradually
-- Regular review and reinforcement
-- Multiple examples for each concept
-- Common pitfalls and how to avoid them
+- **Absolute Beginners:** No prior programming experience required
+- **Aspiring Developers:** Preparing for coding interviews or internships
+- **Students:** Reinforce academic learning with hands-on practice
+- **Self-Learners:** Fill knowledge gaps and learn best practices
 
-## 🔧 Tools & Technologies
+---
 
-**Core Tools:**
+## 🏗️ How to Use
+
+1. **Start with the basics:** Explore the `/basics/` and `/ARRAYS/` folders
+2. **Master data structures:** Work through `/LISTS/`, `/DICTIONARY/`, `/TUPLES/`, and `/PREFIX SUM PATTERN/`
+3. **Practice LeetCode:** Solve problems in the `/LEETCODE/` and `/ARRAYS AND LISTS PROBLEMS/` folders
+4. **Understand efficiency:** Review `/BIG O NOTATION/` for algorithm analysis
+5. **Track your progress:** Tackle more problems and revisit concepts as needed
+
+---
+
+## 🧰 Tools & Technologies
+
 - Python 3.8+
-- VS Code / PyCharm
+- VS Code or PyCharm
 - Git & GitHub
-- Virtual Environments
 
-## 🙏 Acknowledgments
+---
+
+## ⭐ Acknowledgments
 
 - Python Software Foundation
-- The amazing Python community
+- LeetCode and the open-source community
 
-⭐ **Star this repository** if you find it helpful, and **share it** with fellow learners!
+---
+
+**Star this repo** if it helps you, and **share it** with fellow learners and interview preppers!
+
+---
+
+[PYTHON-MASTERY on GitHub](https://github.com/aridepai17/PYTHON-MASTERY)
