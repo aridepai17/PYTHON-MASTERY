@@ -1,0 +1,9 @@
+- STACK -
+Stack is data structure that stores items in a Last In First Out (LIFO) manner.
+
+- WHEN TO USE STACKS -
+- LIFO funtionality
+- The chance of data corruption is minimum
+
+- WHEN TO AVOID STACKS -
+- Random access is not possible
