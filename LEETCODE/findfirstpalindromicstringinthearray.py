@@ -33,4 +33,3 @@ print(firstPalindrome(words6))  # Output: "" (Empty string is considered palindr
 
 words7 = ["abc", "def", "ghi"]
 print(firstPalindrome(words7))  # Output: "" (No palindromic strings)
-    
