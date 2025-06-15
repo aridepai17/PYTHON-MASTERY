@@ -4,12 +4,12 @@
 
 def findDisappearedNumbers(nums):
     present = set(nums)
-    dissappeared = []
+    disappeared = []
     
     for i in range(1, len(nums) + 1):
         if i not in present:
-            dissappeared.append(i)
-    return dissappeared
+            disappeared.append(i)
+    return disappeared
 
 # Example usage
 nums1 = [4, 3, 2, 7, 8, 2, 3, 1]
