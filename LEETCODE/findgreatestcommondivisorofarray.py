@@ -52,3 +52,6 @@ print(findGCD(nums9))  # Output: 100
 
 nums10 = [9, 27, 81]
 print(findGCD(nums10))  # Output: 9
+
+nums11 = [10, 23, 254, 100, 29, 12]
+print(findGCD(nums11))  # Output: 1
