@@ -42,3 +42,7 @@ print(makeFancyString(s))  # Output: "xxyyzz"
 
 s = "noon"
 print(makeFancyString(s))  # Output: "noon"
+
+s = "nooooahhhhh"
+print(makeFancyString(s))  # Output: "nooahh"
+
