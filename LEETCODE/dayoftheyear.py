@@ -32,3 +32,19 @@ print(dayOfYear(date4))  # Output: 61
 
 date5 = "2000-02-29"
 print(dayOfYear(date5))  # Output: 60
+
+# New examples
+new_date1 = "2020-01-01"
+print(dayOfYear(new_date1))  # Output: 1
+
+new_date2 = "2020-12-31"
+print(dayOfYear(new_date2))  # Output: 366
+
+new_date3 = "2021-07-15"
+print(dayOfYear(new_date3))  # Output: 196
+
+new_date4 = "2022-02-28"
+print(dayOfYear(new_date4))  # Output: 59
+
+new_date5 = "2023-03-01"
+print(dayOfYear(new_date5))  # Output: 60
