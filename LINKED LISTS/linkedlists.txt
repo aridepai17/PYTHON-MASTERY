@@ -10,5 +10,15 @@ Types of Linked Lists
 4. Circular Doubly Linked List
 
 
+Insertion to Linked List in memory
+
+1. At the beginning of the linked list
+2. After a node in the middle of the linked list
+3. At the end of the linked list
+
+
+
+
+
 
 
