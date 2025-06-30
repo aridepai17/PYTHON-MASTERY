@@ -229,7 +229,7 @@ class LinkedList:
   def get(self, index):  # Get the value at a specific index
     if index == -1:
       return self.tail.value
-    if index < 0 or index >= self.length:
+    if index < -1 or index >= self.length:
       return None
     current = self.head
     for _ in range(index):
