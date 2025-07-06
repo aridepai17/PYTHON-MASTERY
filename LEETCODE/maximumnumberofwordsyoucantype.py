@@ -18,6 +18,17 @@ def canBeTypedWords(text, brokenLetters):
       count += 1
   return count
 
+# Alternate solution using len()
+def canBeTypedWords(text, brokenLetters):
+  broken = set(brokenLetters)
+  words = text.split()
+  n = len(words)
+  
+  for word in words:
+    if any(char in broken for char in word):
+      n -= 1
+  return n  
+
 # Example usage:
 text = "hello world"
 brokenLetters = "ad"
