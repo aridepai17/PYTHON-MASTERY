@@ -1,41 +1,82 @@
-- Tuples -
-A tuple is an immutable sequence of Python objects.
-Tuples are also comparable and hashable.
+TUPLES
 
-- Tuples VS Lists -
-Tuples are immutable while Lists are mutable.
-Tuples can be stored in Lists and Lists can be stored in Tuples.
-Both Tuples and Lists can be nested
-We generally use Tuples for heterogeneous data types and Lists for homogeneous data types.
-Iteration through a tuple is faster than with Lists
-Tuples that contain immutable elements can be used as dictionary keys.
-If you have data that does not change, implementing it as a Tuple will guarantee that it remains write-protected.
+WHAT IS A TUPLE
+- An ordered, immutable sequence of Python objects.
+- Elements can be of mixed types; nesting is allowed.
+- Tuples are hashable if (and only if) all contained elements are hashable.
 
+CREATION
+- Parentheses: t = (1, 2, 3)
+- Without parentheses (tuple packing): t = 1, 2, 3
+- From iterable: t = tuple([1, 2, 3])
+- Empty tuple: empty = ()
+- Singleton tuple: one = (1,)  # note the trailing comma; (1) is just int 1
 
-- Methods that CANNOT be used with Tuples -
-append()
-insert()
-extend()
-remove()
-pop()
-clear()
-sort()
-reverse()
+ACCESS AND SLICING
+- Indexing: t[0], t[-1]
+- Slicing: t[1:4], t[:], t[::2]
+- Membership: 2 in t -> True/False
 
-- Time and Space Complexity of Tuples -
+PACKING AND UNPACKING
+- a, b, c = (1, 2, 3)
+- a, *middle, c = (1, 2, 3, 4, 5)  # extended unpacking
+- Swap idiom: x, y = y, x
 
-Creating a Tuple 
-Time Complexity: O(1)
-Space Complexity: O(n)
+IMMUTABILITY DETAILS
+- Tuple binding is immutable: you cannot reassign t[0] = ...
+- Contained objects may be mutable and can be modified: t = ([], 1); t[0].append(42) is valid.
+- Because of the above, a tuple is only hashable if all elements are hashable (e.g., numbers, strings, other tuples of immutables).
 
-Traversing a Tuple
-Time Complexity: O(n)
-Space Complexity: O(1)
+AVAILABLE METHODS
+- count(x): number of occurrences of x
+- index(x[, start[, stop]]): first index of x; raises ValueError if not found
 
-Accessing a given element in Tuple
-Time Complexity: O(1)
-Space Complexity: O(1)
+COMMON OPERATIONS
+- Concatenation: t1 + t2 -> new tuple (O(n + m))
+- Repetition: t * k -> new tuple (O(n * k))
+- Iteration: for x in t: ... (O(n))
+- Built-ins: len(t), min(t), max(t), sum(t) if elements are numeric/comparable
 
-Searching for a given element in Tuple
-Time Complexity: O(n)
-Space Complexity: O(1)
+PYTHON EXAMPLES
+# creation
+nums = (1, 2, 3)
+coords = 10.0, 20.0
+single = (42,)          # singleton
+from_iter = tuple('abc')
+
+# access
+first = nums[0]
+last = nums[-1]
+sub = nums[1:]
+
+# unpacking
+x, y, z = nums
+head, *rest = (1, 2, 3, 4)
+
+# immutability vs contained mutability
+box = ([1, 2], 'a')
+box[0].append(3)        # box becomes ([1, 2, 3], 'a')
+
+USE CASES
+- Fixed collections of items (records) that should not change
+- Dictionary keys and set members (when all elements are immutables)
+- Returning multiple values from functions via packing
+- Performance-sensitive iteration where immutability is desirable
+
+PITFALLS AND TIPS
+- Remember the trailing comma for single-element tuples: (value,)
+- Tuples are immutable; methods like append/extend/remove/pop/clear/sort/reverse do not exist
+- A tuple containing a mutable element is not hashable and cannot be a dict key
+- Prefer tuples for heterogeneous, fixed-size records; lists for homogeneous, variable-size sequences
+
+TIME AND SPACE COMPLEXITY HIGHLIGHTS
+- Indexing/access: O(1)
+- Traversal: O(n)
+- Searching (membership): O(n)
+- Creation from iterable of size n: O(n) time, O(n) space
+- Concatenation t1 + t2: O(n + m)
+
+KEY TAKEAWAYS
+- Tuples are ordered, immutable, and can be hashable; ideal for fixed data.
+- Use tuple packing/unpacking for clean assignments and multiple return values.
+- Choose tuples when you need integrity and potential hashability; choose lists for mutability.
