@@ -1,15 +1,66 @@
 QUEUE 
 
-- Queue is a data structure that stores items in a First-In/First-Out manner.
-- Uses FIFO method
+WHAT IS A QUEUE
+- A linear data structure that follows First-In/First-Out (FIFO).
+- Elements are added at the rear (enqueue) and removed from the front (dequeue).
 
-WHY WE NEED QUEUE DATA STRUCTURE?
+FIFO PRINCIPLE
+- The first element inserted is the first one to be served.
+- Example analogy: a line at a ticket counter; the first person in line is served first.
 
-- Utilize first coming data first, while others wait for their turn.
-- First In/ First Out method.
+CORE OPERATIONS
+- enqueue(x): Insert x at the rear.
+- dequeue(): Remove and return the front element. Raises an error if the queue is empty.
+- front()/peek(): Return the front element without removing it. Raises an error if empty.
+- rear()/back(): Return the last element without removing it (optional but common).
+- size(): Number of items currently in the queue.
+- is_empty(): Whether the queue has no elements.
+- clear(): Remove all elements.
 
-APPLICATIONS
+TIME COMPLEXITY (IDEAL IMPLEMENTATION)
+- enqueue: O(1)
+- dequeue: O(1)
+- front/peek: O(1)
+- size/is_empty: O(1)
 
-- Point sale system of a restaurant
-- Printer queue
-- Call center phone systems
+PYTHON IMPLEMENTATIONS
+- Using list
+  - enqueue: list.append(x) -> O(1)
+  - dequeue: list.pop(0) -> O(n) because all elements shift left (not recommended for large queues)
+- Using collections.deque (recommended)
+  - enqueue: deque.append(x) -> O(1)
+  - dequeue: deque.popleft() -> O(1)
+  - bounded queue: deque(maxlen=N) creates a fixed-capacity queue that drops the oldest when full
+- Using queue.Queue (thread-safe; for multithreading)
+  - enqueue: q.put(x)
+  - dequeue: q.get()
+  - Supports blocking operations, timeouts, and maxsize for backpressure
+
+EXAMPLE WITH collections.deque
+from collections import deque
+
+q = deque()
+q.append('order-1')
+q.append('order-2')
+first = q.popleft()      # returns 'order-1'
+front = q[0]             # 'order-2' remains at the front
+is_empty = (len(q) == 0) # False
+
+REAL-WORLD APPLICATIONS (MORE)
+- OS task scheduling (ready queue)
+- Web server request handling
+- Breadth-first search (BFS) in graphs/trees
+- Rate-limiting and sliding windows (with bounded deques)
+- Message queues between services
+- Customer service/ticketing systems
+
+DESIGN NOTES AND PITFALLS
+- Avoid list.pop(0) for high throughput; use deque.popleft() instead.
+- For producers/consumers across threads, prefer queue.Queue for safety.
+- For fixed-size recent items, use deque(maxlen=N); new pushes drop the oldest automatically.
+- Check for emptiness (if q:) before dequeueing to avoid errors.
+
+KEY TAKEAWAYS
+- Use deque for fast FIFO in single-threaded code.
+- Use queue.Queue for thread-safe FIFO between threads.
+- Enqueue at rear, dequeue at front, both ideally O(1).
