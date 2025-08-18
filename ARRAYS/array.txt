@@ -1,27 +1,89 @@
-- Arrays -
-Arrays can store data of specified type.
-Elements of an array are located in a contiguous block of memory.
-Each element of an array has a unique index.
+ARRAYS 
 
-- Types of Arrays -
+DETAILED EXPLANATION
 
-1. One Dimensional Array
-An array with a bunch of values having been declared with a single index.
-a[i] -> i between 0 and n
+WHAT IS AN ARRAY
+- A sequence of elements stored in contiguous memory, all of the same type (in low-level languages).
+- Provides constant-time random access by index due to predictable element addresses.
 
-2. Two Dimensional Array
-An array with a bunch of values having been declared with two indices.
-a[i][j] -> i and j between 0 and n
+MEMORY MODEL
+- Contiguous block of memory with fixed-size elements.
+- Address of a[i] is base_address + i * element_size.
+- Resizing typically requires allocating a new block and copying elements.
 
-3. Multi Dimensional Array
-An array with a bunch of values having been declared with multiple indices.
-a[i][j][k] -> i, j and k between 0 and n
+CORE OPERATIONS
+- Access: read a[i] -> O(1)
+- Update: a[i] = x -> O(1)
+- Traverse: iterate all elements -> O(n)
+- Append (end): O(1) amortized for dynamic arrays; O(n) worst on resize
+- Insert (middle/front): O(n) due to shifting elements right
+- Delete (middle/front): O(n) due to shifting elements left
+- Search by value: O(n); if sorted, binary search -> O(log n)
 
-- When to use arrays - 
-1. To store multiple variables of same data type 
-2. Random access 
+TYPES OF ARRAYS (LOGICAL)
+- 1D: single index a[i]
+- 2D: two indices a[i][j] (row-major in most languages)
+- Multi-D: a[i][j][k] etc.; often represented as flattened 1D with computed offsets
 
-- When not to use arrays -
-1. Same data type elements 
-2. Reserve memory
+PYTHON AND ARRAYS
+- Python list (dynamic array)
+  - Heterogeneous elements allowed
+  - Fast append/pop at end; O(1) amortized
+  - Random access O(1); insert/delete in middle O(n)
+- array.array (typed, standard library)
+  - Homogeneous, compact storage for numbers (e.g., 'i' for signed int, 'f' for float)
+  - More memory-efficient than list for large numeric data
+- numpy.ndarray (NumPy)
+  - Homogeneous, N-dimensional arrays with vectorized operations and broadcasting
+  - Extremely efficient for numerical computing; requires NumPy
 
+PYTHON EXAMPLES
+# list as dynamic array
+nums = [10, 20, 30]
+nums.append(40)      # [10, 20, 30, 40]
+val = nums[2]        # 30 (O(1))
+nums.insert(1, 15)   # [10, 15, 20, 30, 40] (O(n))
+
+# array.array for compact numeric storage
+from array import array
+arr = array('i', [1, 2, 3])
+arr.append(4)
+
+# numpy ndarray for numerical work
+# import numpy as np
+# m = np.array([[1, 2], [3, 4]], dtype=np.int32)
+# s = m.sum()
+
+SLICING (PYTHON)
+- a[start:stop:step] returns a new list (shallow copy)
+- nums[1:4] -> elements at indices 1,2,3
+- nums[::-1] -> reversed copy
+
+2D AND MULTI-D NOTES
+- In Python lists of lists, rows can have different lengths (jagged arrays)
+- NumPy provides true fixed-shape N-D arrays with fast vectorized operations
+
+WHEN TO USE ARRAYS
+- Need random access and dense, index-based storage
+- Large numeric datasets where memory and speed matter (prefer array.array or NumPy)
+
+WHEN NOT TO USE ARRAYS
+- Frequent inserts/deletes in the middle/front (consider deque or linked structures)
+- Heterogeneous records where key-based access is preferable (use dict)
+
+PITFALLS AND TIPS
+- Inserting/removing near the front is O(n); avoid in hot loops
+- Mind off-by-one errors: valid indices are 0..n-1
+- Copying slices creates new lists; large slices can be costly
+- For numeric computing, prefer NumPy for performance and functionality
+
+TIME AND SPACE COMPLEXITY SUMMARY
+- Access/Update: O(1)
+- Append end: O(1) amortized; O(n) worst on resize
+- Insert/Delete middle/front: O(n)
+- Search by value: O(n); binary search on sorted: O(log n)
+- Space: O(n)
+
+KEY TAKEAWAYS
+- Arrays give O(1) random access and compact storage; middle inserts/deletes are costly.
+- In Python, use list for general-purpose dynamic arrays, array.array for compact typed numbers, and NumPy for high-performance N-D arrays.
