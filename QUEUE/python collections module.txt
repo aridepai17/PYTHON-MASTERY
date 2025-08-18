@@ -1,0 +1,82 @@
+PYTHON COLLECTIONS MODULE
+
+DETAILED EXPLANATION
+
+WHAT IS collections.deque
+- A double-ended queue optimized for fast appends and pops from both ends.
+- Ideal for queues, BFS, sliding windows, and producer/consumer patterns.
+
+DEQUE CONSTRUCTOR
+Signature: collections.deque([iterable[, maxlen]])
+Parameters:
+- iterable: optional initial data (list, tuple, string, generator, etc.)
+- maxlen: optional non-negative integer; if set, deque has a fixed size. When full, adding one item discards one from the opposite end.
+Complexity:
+- O(n) to build from an iterable; typical deque operations are O(1).
+Example:
+from collections import deque
+
+dq = deque([1, 2, 3])          # deque([1, 2, 3])
+bounded = deque([1, 2, 3], 3)  # maxlen=3
+bounded.append(4)              # becomes deque([2, 3, 4]) — 1 is discarded
+
+APPEND()
+Purpose:
+- Add an item to the right end.
+Signature:
+- deque.append(x)
+Behavior:
+- O(1) time; returns None.
+- If maxlen is set and the deque is full, discards the leftmost item.
+Example:
+from collections import deque
+
+dq = deque([1, 2])
+dq.append(3)      # deque([1, 2, 3])
+
+POPLEFT()
+Purpose:
+- Remove and return the item from the left end.
+Signature:
+- deque.popleft() -> item
+Behavior:
+- O(1) time.
+- Raises IndexError if the deque is empty.
+Example:
+from collections import deque
+
+dq = deque(['a', 'b', 'c'])
+left = dq.popleft()   # left == 'a'; dq is now deque(['b', 'c'])
+
+CLEAR()
+Purpose:
+- Remove all items from the deque.
+Signature:
+- deque.clear()
+Behavior:
+- O(1) amortized; empties the deque. maxlen (if any) remains unchanged.
+Example:
+from collections import deque
+
+dq = deque([1, 2, 3])
+dq.clear()            # dq is now deque([])
+
+PRACTICAL EXAMPLE (TOGETHER)
+from collections import deque
+
+dq = deque()            # deque()
+dq.append(10)           # deque([10])
+dq.append(20)           # deque([10, 20])
+first = dq.popleft()    # first == 10; dq == deque([20])
+dq.clear()              # dq == deque([])
+
+NOTES AND TIPS
+- Error handling: popleft() on an empty deque raises IndexError; check with if dq: or len(dq) > 0 before popping if unsure.
+- Thread-safety (CPython): Individual appends/pops are atomic, helpful for simple multithreaded producers/consumers.
+- Prefer over list when you frequently add/remove from the left; deque is far more efficient for such operations.
+
+KEY TAKEAWAYS
+- deque(): create, optionally with iterable and maxlen.
+- append(x): push to right; drops left if at maxlen.
+- popleft(): pop from left; raises on empty.
+- clear(): remove all items quickly.
