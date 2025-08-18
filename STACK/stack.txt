@@ -1,9 +1,64 @@
-- STACK -
-Stack is data structure that stores items in a Last In First Out (LIFO) manner.
+STACK
 
-- WHEN TO USE STACKS -
-- LIFO funtionality
-- The chance of data corruption is minimum
+WHAT IS A STACK
+- A linear data structure that follows Last-In/First-Out (LIFO).
+- Elements are added and removed from the same end called the top.
 
-- WHEN TO AVOID STACKS -
-- Random access is not possible
+LIFO PRINCIPLE
+- The most recently added element is the first to be removed.
+- Analogy: A stack of plates; you place and remove plates from the top.
+
+CORE OPERATIONS
+- push(x): Insert x onto the top.
+- pop(): Remove and return the top element. Raises an error if the stack is empty.
+- peek()/top(): Return the top element without removing it. Raises an error if empty.
+- size(): Number of items currently in the stack.
+- is_empty(): Whether the stack has no elements.
+- clear(): Remove all elements.
+
+TIME COMPLEXITY (IDEAL IMPLEMENTATION)
+- push: O(1)
+- pop: O(1)
+- peek/top: O(1)
+- size/is_empty: O(1)
+
+PYTHON IMPLEMENTATIONS
+- Using list (recommended for stacks)
+  - push: list.append(x) -> O(1)
+  - pop: list.pop() -> O(1)
+  - peek: list[-1]
+- Using collections.deque (also fine)
+  - push: deque.append(x) -> O(1)
+  - pop: deque.pop() -> O(1)
+  - peek: deque[-1]
+- Using queue.LifoQueue (thread-safe; for multithreading)
+  - push: q.put(x)
+  - pop: q.get()
+  - Supports blocking operations, timeouts, and maxsize
+
+EXAMPLE WITH list
+stack = []
+stack.append('A')   # push
+stack.append('B')
+top = stack[-1]     # 'B'
+item = stack.pop()  # returns 'B'
+is_empty = (len(stack) == 0)  # False
+
+REAL-WORLD APPLICATIONS
+- Function call stack in programming languages
+- Undo/redo functionality in editors
+- Parentheses/brackets matching and expression evaluation
+- Depth-first search (DFS) in graphs/trees
+- Browser history navigation
+- Backtracking algorithms (e.g., maze solving, N-Queens)
+
+DESIGN NOTES AND PITFALLS
+- Avoid list.insert(0, x) or list.pop(0) for stacks; they are O(n). Use append()/pop() at the end.
+- Check for emptiness (if stack:) before pop()/peek() to avoid errors.
+- For concurrent producers/consumers across threads, prefer queue.LifoQueue.
+- Beware of deep recursion; consider converting to an explicit stack to avoid recursion limits.
+
+KEY TAKEAWAYS
+- Stacks use LIFO: push to top, pop from top.
+- In Python, list.append()/list.pop() is an efficient stack.
+- Use LifoQueue for thread-safe stacks; deque is also a solid option.
