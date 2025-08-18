@@ -1,24 +1,99 @@
-- Dictionary -
-A dictionary is a collection which is unordered, changeable and indexed.
+DICTIONARY 
 
-- Dictionary in memory -
-A hash table is a way of doing key-value lookups. 
-You store the values in an array, and then use a hash function to find the
-index of the array cell that corresponds to your key-value pair.
+WHAT IS A DICTIONARY
+- A mapping of keys to values implemented as a hash table.
+- Provides average O(1) access, insertion, and deletion by key.
+- Conceptually unordered; since Python 3.7, iteration preserves insertion order.
 
-- Differences between Dictionary and List -
-Dictionary
-- Unordered: The items in a dictionary are not stored in any particular order.
-- Access via keys: You access items in a dictionary using keys, not indices.
-- Collection of key-value pairs: Each item in a dictionary is a key-value pair.
-- Preferred when you have unique key values : Dictionaries are ideal when you need to associate unique keys with values.
-- No duplicate members: Dictionaries do not allow duplicate keys, ensuring that each key is unique.
+KEYS AND VALUES
+- Keys must be unique and hashable (immutable types like str, int, float, tuple of immutables).
+- Values can be any Python object and may repeat.
+- Re-assigning an existing key updates its value.
 
-List
-- Ordered: The items in a list are stored in a specific order.
-- Access via indices: You access items in a list using indices, which are integers representing the position of the item in the list.
-- Collection of elements: A list is a collection of elements, which can be of any data type.
-- Preferred when order matters: Lists are ideal when the order of items is important, such as in a sequence or a collection of items that need to be processed in a specific order.
-- Duplicate members allowed: Lists can contain duplicate elements, meaning the same value can appear multiple times in the list.
+CREATION
+- Literal: user = {"id": 1, "name": "Ada"}
+- Constructor: dict([("a", 1), ("b", 2)])
+- Comprehension: squares = {n: n*n for n in range(5)}
+- From keys: dict.fromkeys(["a", "b"], 0)
 
+CORE OPERATIONS
+- Access: user["name"]           # KeyError if missing
+- Safe access: user.get("age", 0)  # returns default if missing
+- Insert/update: user["age"] = 30
+- Existence: "age" in user
+- Delete by key: del user["age"]   # KeyError if missing
+- Pop by key: user.pop("age", None) # returns default if missing
+- Length: len(user)
+- Iterate keys: for k in user:
+- Iterate values: for v in user.values():
+- Iterate items: for k, v in user.items():
 
+COMMON METHODS
+- get(key, default=None): safe read with default
+- setdefault(key, default=None): get if present; otherwise set to default and return it
+- update(mapping_or_iterable, **kwargs): merge/update entries
+- pop(key[, default]): remove and return value; default avoids KeyError
+- popitem(): remove and return an arbitrary/insertion-last (3.7+) key-value pair
+- keys(), values(), items(): dynamic views over the dictionary
+- clear(): remove all items
+- copy(): shallow copy; use copy.deepcopy for nested structures
+- fromkeys(iterable, value=None): create dict with each key mapped to value
+
+MERGING (PYTHON 3.9+)
+- merged = d1 | d2            # right dict wins on key conflicts
+- d1 |= d2                    # in-place update
+- Older alternative: d = {**d1, **d2}
+
+NESTED DICTIONARIES
+- Access safely with chaining get:
+  city = user.get("address", {}).get("city")
+- Initialize if missing:
+  user.setdefault("prefs", {}).setdefault("theme", "light")
+
+DICTIONARY IN MEMORY (HASH TABLE DETAILS)
+- Hash function maps a key to an index (bucket); collisions resolved by probing.
+- Average-case operations are O(1); worst-case can degrade to O(n) under heavy collisions.
+- The table resizes (rehashes) as it grows to keep load factor low.
+
+USE CASES
+- Lookups by unique identifier (e.g., user by id)
+- Grouping/aggregation (e.g., counting with setdefault or collections.Counter)
+- Caching/memoization
+- Configuration/JSON-like records
+
+PITFALLS AND TIPS
+- Do not use mutable types (list, dict, set) as keys; they are unhashable and will raise TypeError.
+- Avoid KeyError by using get()/setdefault()/in checks where appropriate.
+- Remember copy() is shallow; nested objects are shared.
+- Insertion order is preserved for iteration, but do not confuse this with sorted order.
+
+TIME AND SPACE COMPLEXITY (AVERAGE CASE)
+- Read by key: O(1)
+- Insert/update: O(1)
+- Delete: O(1)
+- Membership test (k in d): O(1)
+- Iteration over n items: O(n)
+- Space: O(n)
+
+PYTHON EXAMPLES
+# create and update
+profile = {"name": "Ada", "skills": ["python"]}
+profile["country"] = "UK"
+
+# safe reads
+country = profile.get("country", "unknown")
+lang = profile.get("lang")  # None if missing
+
+# merging
+base = {"a": 1, "b": 2}
+override = {"b": 20, "c": 3}
+merged = base | override   # {"a": 1, "b": 20, "c": 3}
+
+# nested defaults
+settings = {}
+settings.setdefault("ui", {}).setdefault("theme", "dark")
+
+KEY TAKEAWAYS
+- Dictionaries map unique, hashable keys to arbitrary values with average O(1) operations.
+- Use get/setdefault/update and views (keys/values/items) for robust, readable code.
+- Prefer dicts for keyed lookups and JSON-like records; use lists when order/position is primary.
