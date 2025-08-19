@@ -97,3 +97,72 @@ KEY TAKEAWAYS
 - Dictionaries map unique, hashable keys to arbitrary values with average O(1) operations.
 - Use get/setdefault/update and views (keys/values/items) for robust, readable code.
 - Prefer dicts for keyed lookups and JSON-like records; use lists when order/position is primary.
+
+ADVANCED TOPICS
+- Dict comprehensions (with conditions/transforms):
+- squares = {n: n*n for n in range(10) if n % 2 == 0}
+- lower_headers = {k.lower(): v for k, v in headers.items()}
+- When duplicate keys occur while building, the last assignment wins.
+
+ITERATION AND SORTING
+- sorted(d) returns keys in sorted order.
+- sorted(d.items(), key=lambda kv: kv[1]) sorts by value; reverse=True for descending.
+- min(d, key=d.get), max(d, key=d.get) find keys with min/max values.
+
+DICTIONARY VIEWS (DYNAMIC, SET-LIKE)
+- d.keys(), d.values(), d.items() reflect live changes to the dict.
+- Set operations on keys/items: d1.keys() & d2.keys(), d1.keys() | d2.keys(), d1.keys() - d2.keys().
+- Snapshot with list(d.keys()) / list(d.items()) if you need a stable copy for iteration.
+
+DEFAULTS AND SAFE UPDATES
+- get(): val = d.get("threshold", 10)  # returns 10 only if missing
+- If the default is expensive to compute, avoid doing it inside get():
+- if "config" in d: cfg = d["config"] else: cfg = load_config()  # compute lazily
+- setdefault(): d.setdefault("prefs", {}).setdefault("theme", "dark")
+- setdefault() mutates the dict when the key is absent; prefer get() when you do not want mutation.
+
+MUTATION DURING ITERATION
+- Do not add/remove keys while iterating over a dict; iterate over a snapshot instead:
+- for k, v in list(d.items()): ...
+- To delete selectively, collect keys first: to_del = [k for k, v in d.items() if should_delete(v)]; for k in to_del: del d[k]
+
+COLLECTIONS HELPERS
+- collections.defaultdict: dd = defaultdict(list); dd[key].append(value)  # no KeyError for missing keys
+- collections.Counter: counts = Counter(words); counts.most_common(5)
+- collections.ChainMap: layered lookups over multiple dicts without copying.
+- collections.OrderedDict: preserves order like dict (3.7+), but also supports move_to_end() and equality by order.
+
+IMMUTABLE VIEW
+- types.MappingProxyType provides a read-only view of an existing dict:
+- from types import MappingProxyType; read_only = MappingProxyType(config)
+
+COPYING AND DEEPCOPY
+- Shallow copy: c = d.copy() or dict(d)  # nested objects are shared
+- Deep copy: import copy; deep = copy.deepcopy(d)  # duplicates nested objects
+
+KEY TYPES AND EQUALITY
+- Keys must be hashable and compared by equality; tuples are fine if their contents are hashable.
+- bool is a subclass of int; True == 1 and False == 0 share hashes, so avoid mixing them as distinct keys.
+- Numeric types with equal value compare equal as keys (1 == 1.0), so later inserts overwrite earlier ones.
+
+MERGING SHALLOW VS DEEP
+- Shallow merge: d3 = d1 | d2  # (3.9+), right side wins; nested dicts are not merged recursively.
+- In-place shallow merge: d1 |= d2
+- For deep/nested merges, write explicit logic (e.g., recursive merge) or use third-party tools.
+
+UNPACKING AND INTEROP
+- Build from pairs: d = dict([("a", 1), ("b", 2)]) or dict(pairs)
+- Unpack into call: func(**params_dict)  # keys must be valid identifiers
+- Merge with unpacking (older style): combined = {**a, **b}
+- JSON interop: import json; data = json.loads(text); text = json.dumps(data)
+
+PATTERN MATCHING (PYTHON 3.10+)
+- Match on mapping shape:
+- match resp:
+-   case {"status": 200, "data": data}: handle_success(data)
+-   case {"error": msg}: handle_error(msg)
+
+COMMON ANTI-PATTERNS
+- Using mutable keys (list/dict/set) → TypeError; use tuples or frozenset instead.
+- Assuming iteration is sorted; if you need order guarantees beyond insertion order, use sorted().
+- Modifying a dict while iterating over it; iterate a snapshot or accumulate changes first.
